@@ -8,18 +8,17 @@ Los códigos estarían presentes en cada equipo y la información se alojaría e
 
 La app fue realizada por la sección de Análisis de Señales y Sistemas Lineales e Invariantes en el Tiempo, y sus nombres:
 
-Ceccon, Diego
-Díaz, César
-Di Criscio, Diego
-Gasbarri, Gianfranco
-González, Andrés
-Hernández, Carlos
-Herrera, Claudia
-Herrera, José
-Márquez, Jesús
-Parra, Johander
-Pineda, Julialba
-Rossi, Alyissa
-Sanz, Victor
+1. Ceccon, Diego
+2. Díaz, César
+3. Di Criscio, Diego
+4. Gasbarri, Gianfranco
+5. González, Andrés
+6. Hernández, Carlos
+7. Herrera, Claudia
+8. Márquez, Jesús
+9. Parra, Johander
+10. Pineda, Julialba
+11. Rossi, Alyissa
+12. Sanz, Victor
 
 Quienes contribuyeron ya sea en el área de programación, recolección de datos, diseño, protocolo o logística para hacer posible el funcionamiento de este proyecto.
