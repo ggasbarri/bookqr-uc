@@ -4,6 +4,8 @@ App Android Nativa dedicada a escanear códigos QR con el fin de consultar infor
 
 Los códigos estarían presentes en cada equipo y la información se alojaría en una Base de Datos controlada bajo un dominio interno de la Escuela.
 
+Los archivos APK instalables se encuentran bajo la carpeta "APKs" para su prueba
+
 ## Autoría
 
 La app fue realizada por la sección de Análisis de Señales y Sistemas Lineales e Invariantes en el Tiempo, y sus nombres:
