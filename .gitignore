@@ -63,8 +63,6 @@ fabric.properties
 .idea/httpRequests
 ### Android template
 # Built application files
-*.apk
-*.ap_
 
 # Files for the ART/Dalvik VM
 *.dex
@@ -149,3 +147,4 @@ hs_err_pid*
 /.idea/vcs.xml
 .idea/vcs.xml
 app/libs/
+APKs/
