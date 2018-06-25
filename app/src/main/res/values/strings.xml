@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TeleQR</string>
     <string name="main_empty_view_text">Start scanning!</string>
+    <string name="scanned">Scanned:</string>
 </resources>
