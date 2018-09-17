@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">TeleQR</string>
+    <string name="app_name">BookQR</string>
     <string name="main_empty_view_text">Start scanning!</string>
     <string name="scanned">Scanned:</string>
+
+    <string name="title_activity_camera">CameraActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

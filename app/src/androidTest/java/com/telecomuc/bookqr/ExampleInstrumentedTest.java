@@ -1,4 +1,4 @@
-package com.telecomuc.teleqr;
+package com.telecomuc.bookqr;
 
 import static org.junit.Assert.assertEquals;
 
