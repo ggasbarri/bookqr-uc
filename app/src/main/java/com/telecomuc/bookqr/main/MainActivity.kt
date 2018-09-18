@@ -1,35 +1,42 @@
 package com.telecomuc.bookqr.main
 
-import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import android.view.View.VISIBLE
 import com.telecomuc.bookqr.R
 import com.telecomuc.bookqr.camera.CameraActivity
-import com.telecomuc.bookqr.koin.mainModule
 import kotlinx.android.synthetic.main.activity_main.*
-import org.koin.android.ext.android.inject
-import org.koin.android.ext.android.startKoin
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    val viewModel: ViewModel by viewModel(name = "MainViewModel")
+    private val viewModel: MainViewModel by viewModel(name = "MainViewModel")
 
-    private val adapter: LastSeenAdapter by inject()
+    private lateinit var adapter: LastSeenAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        startKoin(this, listOf(mainModule))
-
-        //TODO: Set empty view
-
         setupRecyclerView()
 
         setupFab()
+
+        observeData()
+    }
+
+    private fun observeData() {
+
+        viewModel.lastSeenBooks.observe(this, Observer {
+            adapter.submitList(it)
+            if (it != null && it.size == 0) {
+                empty_view.visibility = VISIBLE
+            }
+        })
     }
 
     private fun setupRecyclerView() {
@@ -38,6 +45,11 @@ class MainActivity : AppCompatActivity() {
                 this,
                 LinearLayoutManager.VERTICAL,
                 false)
+
+        adapter = LastSeenAdapter(
+                View.OnClickListener {
+                    // TODO: Handle
+                })
 
         last_seen_rv.adapter = adapter
         last_seen_rv.layoutManager = layoutManager

@@ -15,7 +15,7 @@ data class BookResponse(
         val message: String?,
 
         @Json(name = "response")
-        val response: BookResponse?
+        val data: BookData?
 )
 
 @Entity(tableName = "book_data",

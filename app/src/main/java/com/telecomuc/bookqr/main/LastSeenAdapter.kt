@@ -1,6 +1,6 @@
 package com.telecomuc.bookqr.main
 
-import android.support.v7.recyclerview.extensions.ListAdapter
+import android.arch.paging.PagedListAdapter
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.main_list_item.*
 import org.koin.standalone.KoinComponent
 
 class LastSeenAdapter(val clickListener: View.OnClickListener)
-    : ListAdapter<BookData, LastSeenVh>(diffUtil), KoinComponent {
+    : PagedListAdapter<BookData, LastSeenVh>(diffUtil), KoinComponent {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastSeenVh {
 
@@ -27,7 +27,13 @@ class LastSeenAdapter(val clickListener: View.OnClickListener)
     }
 
     override fun onBindViewHolder(holder: LastSeenVh, position: Int) {
-        holder.bind(getItem(position))
+        val bookData = getItem(position)
+
+        bookData?.let {
+
+            holder.bind(bookData)
+
+        } ?: return // TODO: Handle placeholder
     }
 }
 

@@ -6,12 +6,13 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class RetrofitClient {
 
-    val retrofit = Retrofit.Builder()
+    val apiService = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
+            .create(EndpointInterface::class.java)
 
 }
 
-const val BASE_URL = "https://api.example.com"
+const val BASE_URL = "https://api.example.com/"
