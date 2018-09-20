@@ -1,9 +1,9 @@
 package com.telecomuc.bookqr
 
-sealed class FetchingState
+sealed class FetchingState {
+    object Fetching : FetchingState()
+    object Idle : FetchingState()
+    object Failure : FetchingState()
+}
 
-object Fetching : FetchingState()
-object Idle : FetchingState()
-object Success : FetchingState()
-object Failure : FetchingState()
 

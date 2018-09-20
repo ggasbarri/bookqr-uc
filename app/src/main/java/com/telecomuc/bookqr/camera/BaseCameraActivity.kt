@@ -1,16 +1,22 @@
 package com.telecomuc.bookqr.camera
 
+import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.design.widget.BottomSheetBehavior
+import android.support.design.widget.CoordinatorLayout
 import android.support.v7.app.AppCompatActivity
+import android.view.Gravity
 import android.view.View
+import com.telecomuc.bookqr.R
+import kotlinx.android.synthetic.main.activity_camera.*
 
 abstract class BaseCameraActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var sheetBehavior: BottomSheetBehavior<*>
 
-    /*override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_camera)
         btnRetry.setOnClickListener {
             if (cameraView.visibility == View.VISIBLE) showPreview() else hidePreview()
         }
@@ -59,5 +65,5 @@ abstract class BaseCameraActivity : AppCompatActivity(), View.OnClickListener {
     protected fun hidePreview() {
         framePreview.visibility = View.GONE
         cameraView.visibility = View.VISIBLE
-    }*/
+    }
 }

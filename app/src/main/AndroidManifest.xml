@@ -23,7 +23,8 @@
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".camera.CameraActivity"></activity>
+        <activity android:name=".camera.CameraActivity" />
+        <activity android:name=".detail.DetailActivity"></activity>
     </application>
 
 </manifest>

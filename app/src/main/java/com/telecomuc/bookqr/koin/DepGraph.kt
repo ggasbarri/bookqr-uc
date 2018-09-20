@@ -1,10 +1,11 @@
 package com.telecomuc.bookqr.koin
 
 import android.arch.persistence.room.Room
+import com.telecomuc.bookqr.data.BookRepository
 import com.telecomuc.bookqr.data.Database
-import com.telecomuc.bookqr.main.MainDataSource
-import com.telecomuc.bookqr.main.MainRepository
+import com.telecomuc.bookqr.detail.DetailViewModel
 import com.telecomuc.bookqr.main.MainViewModel
+import com.telecomuc.bookqr.network.BookDataSource
 import com.telecomuc.bookqr.network.RetrofitClient
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.ext.koin.viewModel
@@ -21,18 +22,24 @@ val appModule = module {
                 .build()
     }
 
-    // single instance of MainDao
     single {
-        get<Database>().mainDao()
+        get<Database>().bookDao()
     }
 
-    // single instance of MainDataSource
-    single { MainDataSource(get()) }
+    single { BookDataSource(get()) }
 
-    // single instance of MainRepository
-    single { MainRepository(get(), get()) }
+    single { BookRepository(get(), get()) }
 
-    // MainViewModel ViewModel
-    viewModel(name = "MainViewModel") { MainViewModel(get()) }
+    // MainActivity
 
+    viewModel(name = mainVmName) { MainViewModel(get()) }
+
+
+    // DetailActivity
+
+    viewModel(name = detailVmName) { DetailViewModel(get()) }
 }
+
+const val detailVmName = "DetailViewModel"
+
+const val mainVmName = "MainViewModel"

@@ -7,7 +7,7 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
 
 @Dao
-interface MainDao {
+interface BookDao {
 
     @Query("SELECT * FROM book_data ORDER BY datetime(requestDate)")
     fun getLastSeenBooks(): DataSource.Factory<Int, BookData>

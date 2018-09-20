@@ -6,6 +6,6 @@ import android.arch.persistence.room.RoomDatabase
 @Database(entities = [BookData::class], version = 1)
 abstract class Database : RoomDatabase() {
 
-    abstract fun mainDao(): MainDao
+    abstract fun bookDao(): BookDao
 
 }

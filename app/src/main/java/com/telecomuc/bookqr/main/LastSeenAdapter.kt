@@ -12,7 +12,7 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.main_list_item.*
 import org.koin.standalone.KoinComponent
 
-class LastSeenAdapter(val clickListener: View.OnClickListener)
+class LastSeenAdapter(val clickListener: LastSeenItemClick)
     : PagedListAdapter<BookData, LastSeenVh>(diffUtil), KoinComponent {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastSeenVh {
@@ -20,9 +20,16 @@ class LastSeenAdapter(val clickListener: View.OnClickListener)
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.main_list_item, parent, false)
 
-        view.setOnClickListener(clickListener)
+        val viewHolder = LastSeenVh(view)
 
-        return LastSeenVh(view)
+        view.setOnClickListener { _ ->
+            //TODO: Test
+            getItem(viewHolder.adapterPosition)?.let {
+                clickListener.click(it)
+            }
+        }
+
+        return viewHolder
 
     }
 
@@ -46,6 +53,10 @@ class LastSeenVh(override val containerView: View)
 
     }
 
+}
+
+interface LastSeenItemClick {
+    fun click(bookData: BookData)
 }
 
 val diffUtil = object : DiffUtil.ItemCallback<BookData>() {

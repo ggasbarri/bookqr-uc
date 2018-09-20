@@ -2,8 +2,10 @@ package com.telecomuc.bookqr.data
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Index
+import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
 @JsonClass(generateAdapter = true)
 data class BookResponse(
@@ -21,6 +23,7 @@ data class BookResponse(
 @Entity(tableName = "book_data",
         primaryKeys = ["id"],
         indices = [Index("id", unique = true)])
+@Parcelize
 data class BookData(
 
         @Json(name = "id")
@@ -48,4 +51,4 @@ data class BookData(
         val status: Int,
 
         var requestDate: String?
-)
+) : Parcelable

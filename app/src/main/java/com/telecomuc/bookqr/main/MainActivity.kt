@@ -5,16 +5,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import android.view.View.VISIBLE
 import com.telecomuc.bookqr.R
 import com.telecomuc.bookqr.camera.CameraActivity
+import com.telecomuc.bookqr.data.BookData
+import com.telecomuc.bookqr.detail.DetailActivity
+import com.telecomuc.bookqr.koin.mainVmName
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel: MainViewModel by viewModel(name = "MainViewModel")
+    private val viewModel: MainViewModel by viewModel(name = mainVmName)
 
     private lateinit var adapter: LastSeenAdapter
 
@@ -47,8 +50,10 @@ class MainActivity : AppCompatActivity() {
                 false)
 
         adapter = LastSeenAdapter(
-                View.OnClickListener {
-                    // TODO: Handle
+                object : LastSeenItemClick {
+                    override fun click(bookData: BookData) {
+                        startActivity<DetailActivity>("bookData" to bookData)
+                    }
                 })
 
         last_seen_rv.adapter = adapter
