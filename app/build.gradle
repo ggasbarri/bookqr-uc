@@ -7,12 +7,13 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.telecomuc.teleqr"
-        minSdkVersion 17
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -45,6 +46,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Multidex
+    implementation 'com.android.support:multidex:1.0.3'
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -105,6 +109,7 @@ dependencies {
 
     //Mobile Vision
     implementation 'com.google.firebase:firebase-core:16.0.3'
+    implementation 'com.google.firebase:firebase-ml-common:16.1.2'
     implementation 'com.google.firebase:firebase-ml-vision:17.0.0'
 
     //Testing
@@ -128,11 +133,6 @@ dependencies {
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:0.10.6"
 
-    // CameraKit
-    implementation 'com.wonderkiln:camerakit:0.13.1'
-
-    // FAB progress circle
-    implementation 'com.github.jorgecastilloprz:fabprogresscircle:1.01@aar'
 }
 
 repositories {

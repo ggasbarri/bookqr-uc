@@ -1,11 +1,11 @@
 package com.telecomuc.bookqr
 
-import android.app.Application
+import android.support.multidex.MultiDexApplication
 import com.squareup.leakcanary.LeakCanary
 import com.telecomuc.bookqr.koin.appModule
 import org.koin.android.ext.android.startKoin
 
-class BookQR : Application() {
+class BookQR : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()

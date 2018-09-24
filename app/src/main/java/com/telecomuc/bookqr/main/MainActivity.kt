@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View.VISIBLE
 import com.telecomuc.bookqr.R
-import com.telecomuc.bookqr.camera.CameraActivity
+import com.telecomuc.bookqr.camera.LivePreviewActivity
 import com.telecomuc.bookqr.data.BookData
 import com.telecomuc.bookqr.detail.DetailActivity
 import com.telecomuc.bookqr.koin.mainVmName
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupFab() {
         camera_fab!!.setOnClickListener { v ->
 
-            val intent = Intent(this@MainActivity, CameraActivity::class.java)
+            val intent = Intent(this@MainActivity, LivePreviewActivity::class.java)
             startActivity(intent)
 
         }

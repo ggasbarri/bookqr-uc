@@ -4,9 +4,12 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.telecomuc.bookqr.R
 import com.telecomuc.bookqr.data.BookData
 import com.telecomuc.bookqr.koin.detailVmName
+import kotlinx.android.synthetic.main.activity_detail.*
+import org.jetbrains.anko.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailActivity : AppCompatActivity() {
@@ -57,6 +60,25 @@ class DetailActivity : AppCompatActivity() {
     private fun setupData(bookData: BookData) {
 
         viewModel.bookData = bookData
+
+        book_title.text = bookData.nombre
+        book_author.text = """${getString(R.string.by)} ${bookData.autor}"""
+
+        if (bookData.status == 0) {
+            status_value.text = getString(R.string.available)
+            rent_btn.visibility = View.VISIBLE
+        } else {
+            status_value.text = getString(R.string.not_available)
+            rent_btn.visibility = View.GONE
+        }
+
+        subject_value.text = bookData.asignatura
+        editorial_value.text = bookData.editorial
+        code_value.text = bookData.codigo
+
+        rent_btn.setOnClickListener {
+            toast(getString(R.string.book_rented))
+        }
 
     }
 
