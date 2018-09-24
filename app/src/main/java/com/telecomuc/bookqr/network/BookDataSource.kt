@@ -20,7 +20,7 @@ class BookDataSource(private val retrofitClient: RetrofitClient) {
             val bookResponse = response.body()
 
             bookResponse?.let {
-                val data = bookResponse.data
+                val data = bookResponse.response
 
                 if (data == null) {
                     fetchingState.postValue(FetchingState.Failure)

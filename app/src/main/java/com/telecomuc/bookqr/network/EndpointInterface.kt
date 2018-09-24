@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface EndpointInterface {
 
-    @GET("book/{id}")
+    @GET("books/{id}")
     fun getBookForId(@Path("id") id: String): Deferred<Response<BookResponse>>
 
 }

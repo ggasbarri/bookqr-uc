@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import com.telecomuc.bookqr.R
 import com.telecomuc.bookqr.data.BookData
 import com.telecomuc.bookqr.koin.detailVmName
@@ -27,6 +29,8 @@ class DetailActivity : AppCompatActivity() {
         savedInstanceState?.let {
             viewModel.bookData = it.getParcelable("bookData")
         }
+
+
 
         if (id == null) {
 
@@ -58,6 +62,10 @@ class DetailActivity : AppCompatActivity() {
 
 
     private fun setupData(bookData: BookData) {
+
+        // Update layout
+        detail_pb.visibility = GONE
+        content_group.visibility = VISIBLE
 
         viewModel.bookData = bookData
 

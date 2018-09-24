@@ -4,8 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.paging.DataSource
 import com.telecomuc.bookqr.FetchingState
 import com.telecomuc.bookqr.network.BookDataSource
-import kotlinx.coroutines.experimental.async
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.*
 import java.util.*
 
 class BookRepository(private val mainDao: BookDao,
@@ -15,15 +14,13 @@ class BookRepository(private val mainDao: BookDao,
     // TODO: Check if it works after inserting
     fun getBookForId(id: String): LiveData<BookData> {
 
-        launch {
+        GlobalScope.launch(Dispatchers.Default, CoroutineStart.DEFAULT, null, {
             // TODO: Check if background thread
-            val deferredResponse = async {
+            val bookData = async(Dispatchers.IO) {
 
                 dataSource.getBookForId(id)
 
-            }
-
-            val bookData = deferredResponse.await()
+            }.await()
 
             bookData?.let {
                 // Add current date to request date
@@ -36,7 +33,7 @@ class BookRepository(private val mainDao: BookDao,
 
                 mainDao.insertBook(bookData)
             }
-        }
+        })
 
         return mainDao.getBookById(id)
 

@@ -4,10 +4,8 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Index
 import android.os.Parcelable
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 
-@JsonClass(generateAdapter = true)
 data class BookResponse(
 
         @Json(name = "code")
@@ -17,7 +15,7 @@ data class BookResponse(
         val message: String?,
 
         @Json(name = "response")
-        val data: BookData?
+        val response: BookData?
 )
 
 @Entity(tableName = "book_data",

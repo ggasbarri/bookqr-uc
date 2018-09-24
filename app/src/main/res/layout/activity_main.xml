@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="16dp"
+                android:padding="24dp"
                 android:fontFamily="@font/title_font"
                 android:text="@string/app_name"
                 android:textSize="36sp" />

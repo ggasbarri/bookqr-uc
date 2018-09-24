@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.telecomuc.bookqr.R
 import com.telecomuc.bookqr.camera.LivePreviewActivity
@@ -36,8 +37,12 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.lastSeenBooks.observe(this, Observer {
             adapter.submitList(it)
-            if (it != null && it.size == 0) {
-                empty_view.visibility = VISIBLE
+            if (it != null) {
+                if (it.size == 0) {
+                    empty_view.visibility = VISIBLE
+                } else {
+                    empty_view.visibility = GONE
+                }
             }
         })
     }
