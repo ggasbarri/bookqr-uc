@@ -21,4 +21,4 @@ class RetrofitClient {
 
 }
 
-const val BASE_URL = "http://192.168.99.100:8055/"
+const val BASE_URL = "http://138.197.0.175:8055/"

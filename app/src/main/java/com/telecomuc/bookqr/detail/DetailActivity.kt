@@ -1,12 +1,12 @@
 package com.telecomuc.bookqr.detail
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.telecomuc.bookqr.R
 import com.telecomuc.bookqr.data.BookData
 import com.telecomuc.bookqr.koin.detailVmName

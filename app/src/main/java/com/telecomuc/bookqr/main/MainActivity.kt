@@ -1,12 +1,12 @@
 package com.telecomuc.bookqr.main
 
-import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import com.telecomuc.bookqr.R
 import com.telecomuc.bookqr.camera.LivePreviewActivity
 import com.telecomuc.bookqr.data.BookData
@@ -49,9 +49,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
 
-        val layoutManager = LinearLayoutManager(
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
                 this,
-                LinearLayoutManager.VERTICAL,
+                RecyclerView.VERTICAL,
                 false)
 
         adapter = LastSeenAdapter(

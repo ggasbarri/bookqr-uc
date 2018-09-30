@@ -1,6 +1,6 @@
 package com.telecomuc.bookqr.koin
 
-import android.arch.persistence.room.Room
+import androidx.room.Room
 import com.telecomuc.bookqr.data.BookRepository
 import com.telecomuc.bookqr.data.Database
 import com.telecomuc.bookqr.detail.DetailViewModel

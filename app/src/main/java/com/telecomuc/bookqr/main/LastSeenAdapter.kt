@@ -1,11 +1,10 @@
 package com.telecomuc.bookqr.main
 
-import android.arch.paging.PagedListAdapter
-import android.support.v7.util.DiffUtil
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
+import androidx.recyclerview.widget.DiffUtil
 import com.telecomuc.bookqr.R
 import com.telecomuc.bookqr.data.BookData
 import kotlinx.android.extensions.LayoutContainer
@@ -45,7 +44,7 @@ class LastSeenAdapter(val clickListener: LastSeenItemClick)
 }
 
 class LastSeenVh(override val containerView: View)
-    : RecyclerView.ViewHolder(containerView), LayoutContainer {
+    : androidx.recyclerview.widget.RecyclerView.ViewHolder(containerView), LayoutContainer {
 
     fun bind(data: BookData) {
         book_tv.text = data.nombre

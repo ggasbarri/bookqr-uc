@@ -1,39 +1,35 @@
 package com.telecomuc.bookqr.network
 
-import android.arch.lifecycle.MutableLiveData
-import com.telecomuc.bookqr.FetchingState
+import androidx.lifecycle.MutableLiveData
 import com.telecomuc.bookqr.data.BookData
+import com.telecomuc.bookqr.utils.Resource
+import com.telecomuc.bookqr.utils.awaitResult
+import com.telecomuc.bookqr.utils.getOrThrow
+import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.android.Main
 
 class BookDataSource(private val retrofitClient: RetrofitClient) {
 
-    val fetchingState = MutableLiveData<FetchingState>()
+    fun getBookForId(id: String): MutableLiveData<Resource<BookData?>> {
 
+        val result = MutableLiveData<Resource<BookData?>>()
+        result.value = Resource.loading(null)
 
-    suspend fun getBookForId(id: String): BookData? {
+        GlobalScope.launch(Dispatchers.IO, CoroutineStart.DEFAULT, null, {
+            try {
+                val response = retrofitClient.apiService
+                        .getBookForId(id).awaitResult().getOrThrow()
+                withContext(Dispatchers.Main) { result.value = Resource.success(response.response) }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
 
-        fetchingState.postValue(FetchingState.Fetching)
+                    result.value = Resource.error("Error while fetching", null)
 
-        val response = retrofitClient.apiService.getBookForId(id).await()
-
-        if (response.isSuccessful) {
-
-            val bookResponse = response.body()
-
-            bookResponse?.let {
-                val data = bookResponse.response
-
-                if (data == null) {
-                    fetchingState.postValue(FetchingState.Failure)
-                } else {
-                    fetchingState.postValue(FetchingState.Idle)
-                    return data
                 }
+            }
+        })
 
-            } ?: fetchingState.postValue(FetchingState.Failure)
-
-        } else fetchingState.postValue(FetchingState.Failure)
-
-        return null
+        return result
 
     }
 

@@ -1,8 +1,8 @@
 package com.telecomuc.bookqr.data
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Index
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.Index
 import com.squareup.moshi.Json
 import kotlinx.android.parcel.Parcelize
 

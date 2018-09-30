@@ -1,6 +1,6 @@
 package com.telecomuc.bookqr
 
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import com.squareup.leakcanary.LeakCanary
 import com.telecomuc.bookqr.koin.appModule
 import org.koin.android.ext.android.startKoin

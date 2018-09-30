@@ -1,7 +1,7 @@
 package com.telecomuc.bookqr.detail
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
 import com.telecomuc.bookqr.data.BookData
 import com.telecomuc.bookqr.data.BookRepository
 
