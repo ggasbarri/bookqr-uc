@@ -6,6 +6,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.telecomuc.bookqr.R
 import com.telecomuc.bookqr.camera.LivePreviewActivity
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
 
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(
+        val layoutManager = LinearLayoutManager(
                 this,
                 RecyclerView.VERTICAL,
                 false)

@@ -16,14 +16,21 @@ android {
         multiDexEnabled true
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         interalUsage {
-            minifyEnabled true
-            shrinkResources true
+
+            debuggable false
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
     }
@@ -31,21 +38,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
     kotlin {
         experimental {
             coroutines 'enable'
         }
     }
-
     androidExtensions {
         experimental = true
     }
-
+    buildToolsVersion '28.0.2'
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Multidex
     implementation 'androidx.multidex:multidex:2.0.0'
@@ -54,13 +59,12 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.26.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.26.1'
-
     implementation 'com.google.android.material:material:1.0.0'
 
     //Android support library
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation "androidx.constraintlayout:constraintlayout:2.0.0-alpha2"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.vectordrawable:vectordrawable:1.0.0'
@@ -72,25 +76,27 @@ dependencies {
 
     // ViewModel and LiveData
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 
-    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0' // use kapt for Kotlin
+    // use kapt for Kotlin
+
     // alternately - if using Java8, use the following instead of compiler
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.0.0'
 
     // optional - Test helpers for LiveData
     testImplementation 'androidx.arch.core:core-testing:2.0.0'
-
     implementation 'androidx.room:room-runtime:2.0.0-rc01'
-    kapt 'androidx.room:room-compiler:2.0.0-rc01' // use kapt for Kotlin
+    kapt 'androidx.room:room-compiler:2.0.0-rc01'
+
+    // use kapt for Kotlin
 
     // Test helpers
     testImplementation 'androidx.room:room-testing:2.0.0-rc01'
-
     implementation 'androidx.paging:paging-runtime:2.0.0-rc01'
-
     def work_version = "1.0.0-alpha09"
+    implementation "android.arch.work:work-runtime-ktx:$work_version"
 
-    implementation "android.arch.work:work-runtime-ktx:$work_version" // use -ktx for Kotlin
+    // use -ktx for Kotlin
 
     // optional - Firebase JobDispatcher support
     implementation "android.arch.work:work-firebase:$work_version"
@@ -128,12 +134,13 @@ dependencies {
     // LeakCanary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+    interalUsageImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+
     // Optional, if you use support library fragments:
     debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
 
     // Anko Commons
-    implementation "org.jetbrains.anko:anko-commons:0.10.6"
-
+    implementation 'org.jetbrains.anko:anko-commons:0.10.6'
 }
 
 repositories {

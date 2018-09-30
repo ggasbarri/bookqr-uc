@@ -5,10 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.telecomuc.bookqr.network.BookDataSource
 import com.telecomuc.bookqr.utils.FetchingState
-import kotlinx.coroutines.experimental.CoroutineStart
-import kotlinx.coroutines.experimental.Dispatchers
-import kotlinx.coroutines.experimental.GlobalScope
-import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.*
+import kotlinx.coroutines.experimental.android.Main
 import java.util.*
 
 class BookRepository(private val mainDao: BookDao,
@@ -18,7 +16,7 @@ class BookRepository(private val mainDao: BookDao,
 
     fun getBookForId(id: String): LiveData<BookData> {
 
-        GlobalScope.launch(Dispatchers.Default, CoroutineStart.DEFAULT, null, {
+        GlobalScope.launch(Dispatchers.Main, CoroutineStart.DEFAULT, null, {
 
             dataSource.getBookForId(id)
                     .observeForever {
@@ -44,7 +42,9 @@ class BookRepository(private val mainDao: BookDao,
 
                                     it.requestDate = requestDate
 
-                                    mainDao.insertBook(it)
+                                    GlobalScope.launch(Dispatchers.IO) {
+                                        mainDao.insertBook(it)
+                                    }
                                 }
 
                             }
@@ -55,8 +55,9 @@ class BookRepository(private val mainDao: BookDao,
 
                     }
         })
-
-        return mainDao.getBookById(id)
+        with(Dispatchers.IO) {
+            return mainDao.getBookById(id)
+        }
 
     }
 

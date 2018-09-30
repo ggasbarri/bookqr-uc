@@ -42,7 +42,9 @@
 
 # Top-level functions that can only be used by Kotlin.
 -dontwarn retrofit2.-KotlinExtensions
+-dontwarn okio.**
 
+-dontwarn javax.annotation.**
 
 
 # Moshi
@@ -65,9 +67,55 @@
     <init>(...);
     <fields>;
 }
+-keep class kotlin.Metadata { *; }
 
 -keep class kotlin.reflect.jvm.internal.impl.builtins.BuiltInsLoaderImpl
 
 -keepclassmembers class kotlin.Metadata {
     public <methods>;
 }
+
+-keep class org.conscrypt.OpenSSLProvider
+-keep class org.conscrypt.Conscrypt
+
+# Data
+
+-keep class com.telecomuc.bookqr.data.** { *; }
+
+-keepclassmembers class androidx.lifecycle.** { *; }
+-keep class androidx.lifecycle.* { *; }
+-dontwarn androidx.lifecycle.*
+
+-keepnames class android.arch.lifecycle.ViewModel
+
+
+## Android architecture components: Lifecycle
+# LifecycleObserver's empty constructor is considered to be unused by proguard
+-keepclassmembers class * implements android.arch.lifecycle.LifecycleObserver {
+    <init>(...);
+}
+# ViewModel's empty constructor is considered to be unused by proguard
+-keepclassmembers class * extends android.arch.lifecycle.ViewModel {
+    <init>(...);
+}
+# keep Lifecycle State and Event enums values
+-keepclassmembers class android.arch.lifecycle.Lifecycle$State { *; }
+-keepclassmembers class android.arch.lifecycle.Lifecycle$Event { *; }
+# keep methods annotated with @OnLifecycleEvent even if they seem to be unused
+# (Mostly for LiveData.LifecycleBoundObserver.onStateChange(), but who knows)
+-keepclassmembers class * {
+    @android.arch.lifecycle.OnLifecycleEvent *;
+}
+
+-keepclassmembers class * implements android.arch.lifecycle.LifecycleObserver {
+    <init>(...);
+}
+
+-keep class * implements android.arch.lifecycle.LifecycleObserver {
+    <init>(...);
+}
+-keepclassmembers class android.arch.** { *; }
+-keep class android.arch.** { *; }
+-dontwarn android.arch.**
+
+-keep class * implements android.arch.lifecycle.GeneratedAdapter {<init>(...);}
